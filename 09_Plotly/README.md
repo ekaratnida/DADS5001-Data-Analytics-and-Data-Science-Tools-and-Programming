@@ -12,4 +12,11 @@
 5. Exercise: https://www.kaggle.com/datasets/starbucks/store-locations
 6. Note: https://github.com/chrismeller/
 
+## Example
+1. https://dash.gallery/dash-avs-explorer/
+2. https://dash.gallery/dash-food-consumption/
+3. https://dash.gallery/dash-gan-editor/
+4. https://dash.gallery/dash-spatial-clustering/
+
+
 
