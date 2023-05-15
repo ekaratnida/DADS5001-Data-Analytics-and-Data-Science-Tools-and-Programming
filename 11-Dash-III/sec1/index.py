@@ -5,6 +5,7 @@ from apps import scatter_layout, histogram_layout, histogram_layout2
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     html.Div([
+        dcc.Link('Home | ', href='/'),
         dcc.Link('Scatter | ', href='/apps/scatter_layout'),
         dcc.Link('Histogram | ', href='/apps/histogram_layout'),
         dcc.Link('Menu3 | ', href='/apps/histogram_layout2')
@@ -21,7 +22,7 @@ def display_page(pathname):
         return histogram_layout.layout
     if pathname == '/apps/histogram_layout2':
         return histogram_layout2.layout
-    else:
+    if pathname == '/':
         return "Please choose a link"
 
 if __name__ == '__main__':
