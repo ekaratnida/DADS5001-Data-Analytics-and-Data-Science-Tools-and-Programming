@@ -6,5 +6,5 @@
 ## Recommend Youtube channel
 https://www.youtube.com/c/CharmingData/videos
 
-## Fast update
+## Tip
 https://stackoverflow.com/a/63681810

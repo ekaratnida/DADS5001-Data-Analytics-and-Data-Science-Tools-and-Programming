@@ -51,21 +51,7 @@ app.layout = html.Div(
                 id='id2',
                 figure=fig2
             )
-        ], style={'padding': 10, 'flex': 1}),
-
-        
-        html.Div(children=[
-            html.H1(children='Histogram plot 3'),
-
-            html.Div(children='''
-                description 3.
-            '''),
-
-            dcc.Graph(
-                id='id3',
-                figure=fig2
-            )
-        ], style={'padding': 10, 'flex': 0.5})
+        ], style={'padding': 10, 'flex': 1})
 
     ], style={'display': 'flex', 'flexDirection': 'row', 'flex-wrap': 'wrap'})
 
