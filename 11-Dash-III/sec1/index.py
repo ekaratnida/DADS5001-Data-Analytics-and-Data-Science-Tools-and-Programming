@@ -5,6 +5,7 @@ from apps import scatter_layout, histogram_layout, histogram_layout2
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     html.Div([
+        dcc.Link('Home | ', href='/'),
         dcc.Link('Scatter | ', href='/apps/scatter_layout'),
         dcc.Link('Histogram | ', href='/apps/histogram_layout'),
         dcc.Link('Menu3 | ', href='/apps/histogram_layout2')
@@ -26,3 +27,8 @@ def display_page(pathname):
 
 if __name__ == '__main__':
     app.run_server(debug=False)
+
+
+#Exercise
+# 1. Change menu 3 to another graph (Not histogram)
+# 2. Add the 4th menu link to line graph

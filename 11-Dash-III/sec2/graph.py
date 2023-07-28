@@ -11,9 +11,7 @@ app = Dash(__name__, external_stylesheets=external_stylesheets)
 
 app.layout = html.Div([
 
-    dcc.Dropdown(id='dpdn2', value=['Germany','Brazil'], multi=True,
-                 options=[{'label': x, 'value': x} for x in
-                          df.country.unique()]),
+    dcc.Dropdown(id='dpdn2', value=['Germany','Brazil'], multi=True, options=[{'label': x, 'value': x} for x in df.country.unique()]),
     html.Div([
         dcc.Graph(id='pie-graph', figure={}, className='six columns'),
         dcc.Graph(id='my-graph', figure={}, clickData=None, hoverData=None,
@@ -61,14 +59,13 @@ def update_side_graph(hov_data, clk_data, slct_data, country_chosen):
     else:
         print(f'hover data: {hov_data}')
         # print(hov_data['points'][0]['customdata'][0])
-        # print(f'click data: {clk_data}')
+        print(f'click data: {clk_data}')
         # print(f'selected data: {slct_data}')
         dff2 = df[df.country.isin(country_chosen)]
         hov_year = hov_data['points'][0]['x']
         dff2 = dff2[dff2.year == hov_year]
         fig2 = px.pie(data_frame=dff2, values='pop', names='country', title=f'Population for: {hov_year}')
         return fig2
-
 
 if __name__ == '__main__':
     app.run_server(debug=True)

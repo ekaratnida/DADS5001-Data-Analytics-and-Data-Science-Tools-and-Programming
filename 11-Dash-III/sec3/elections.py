@@ -36,12 +36,7 @@ for s,v in zip(['AZ','FL','GA','IA','ME','MI','NC','NV','OH','PA','TX','WI'],
 #print(radio_list)
 
 
-# Input list for the callback
-input_list = []
-for x in ['AZ','FL','GA','IA','ME','MI','NC','NV','OH','PA','TX','WI']:
-    input_list.append(
-        Input(component_id=f'radiolist-{x}', component_property='value')
-    )
+
 
 
 app.layout = html.Div([
@@ -58,7 +53,13 @@ app.layout = html.Div([
     ], className="g-0")
 ])
 
-
+# Input list for the callback
+input_list = []
+for x in ['AZ','FL','GA','IA','ME','MI','NC','NV','OH','PA','TX','WI']:
+    input_list.append(
+        Input(component_id=f'radiolist-{x}', component_property='value')
+    )
+    
 # must have Dash version 1.16.0 or higher
 @app.callback(
     Output(component_id='my-choropleth', component_property='figure'),
