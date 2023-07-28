@@ -22,13 +22,12 @@ def display_page(pathname):
         return histogram_layout.layout
     if pathname == '/apps/histogram_layout2':
         return histogram_layout2.layout
-    else:
+    if pathname == '/':
         return "Please choose a link"
 
 if __name__ == '__main__':
     app.run_server(debug=False)
-
-
+    
 #Exercise
 # 1. Change menu 3 to another graph (Not histogram)
 # 2. Add the 4th menu link to line graph
