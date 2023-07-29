@@ -1,6 +1,6 @@
 from dash import dcc, html, Input, Output
 from app import app
-from apps import scatter_layout, histogram_layout, histogram_layout2, treemap_layout
+from apps import scatter_layout, histogram_layout, line_layout, treemap_layout
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
@@ -8,7 +8,8 @@ app.layout = html.Div([
         dcc.Link('Home | ', href='/'),
         dcc.Link('Scatter | ', href='/apps/scatter_layout'),
         dcc.Link('Histogram | ', href='/apps/histogram_layout'),
-        dcc.Link('Treemap | ', href='/apps/treemap_layout')
+        dcc.Link('Treemap | ', href='/apps/treemap_layout'),
+        dcc.Link('LineChart | ', href='/apps/line_layout')
     ], className="row"),
     html.Div(id='page-content', children=[])
 ])
@@ -22,6 +23,8 @@ def display_page(pathname):
         return histogram_layout.layout
     if pathname == '/apps/treemap_layout':
         return treemap_layout.layout
+    if pathname == '/apps/line_layout':
+        return line_layout.layout
     if pathname == '/':
         return "Please choose a link"
 
