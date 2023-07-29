@@ -1,6 +1,6 @@
 from dash import dcc, html, Input, Output
 from app import app
-from apps import scatter_layout, histogram_layout, histogram_layout2
+from apps import scatter_layout, histogram_layout, histogram_layout2, treemap_layout
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
@@ -8,7 +8,7 @@ app.layout = html.Div([
         dcc.Link('Home | ', href='/'),
         dcc.Link('Scatter | ', href='/apps/scatter_layout'),
         dcc.Link('Histogram | ', href='/apps/histogram_layout'),
-        dcc.Link('Menu3 | ', href='/apps/histogram_layout2')
+        dcc.Link('Treemap | ', href='/apps/treemap_layout')
     ], className="row"),
     html.Div(id='page-content', children=[])
 ])
@@ -20,8 +20,8 @@ def display_page(pathname):
         return scatter_layout.layout
     if pathname == '/apps/histogram_layout':
         return histogram_layout.layout
-    if pathname == '/apps/histogram_layout2':
-        return histogram_layout2.layout
+    if pathname == '/apps/treemap_layout':
+        return treemap_layout.layout
     if pathname == '/':
         return "Please choose a link"
 
@@ -29,5 +29,5 @@ if __name__ == '__main__':
     app.run_server(debug=False)
     
 #Exercise
-# 1. Change menu 3 to another graph (Not histogram)
-# 2. Add the 4th menu link to line graph
+# 1. Change menu3 to another graph (Not histogram)
+# 2. Add the 4th menu (menu4) link to line graph
