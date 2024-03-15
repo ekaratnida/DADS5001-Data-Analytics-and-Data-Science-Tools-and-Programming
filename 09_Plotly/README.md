@@ -18,5 +18,8 @@
 3. https://dash.gallery/dash-gan-editor/
 4. https://dash.gallery/dash-spatial-clustering/
 
+## Modern apps
+1. RAG Example: https://huggingface.co/learn/cookbook/rag_with_hugging_face_gemma_mongodb
+
 
 
