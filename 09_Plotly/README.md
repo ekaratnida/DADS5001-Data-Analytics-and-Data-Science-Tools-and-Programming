@@ -20,7 +20,7 @@
 
 ## Modern apps
 1. What is RAG: https://aws.amazon.com/th/what-is/retrieval-augmented-generation/
-   1.1 RAG Example: https://huggingface.co/learn/cookbook/rag_with_hugging_face_gemma_mongodb
+   <br> 1.1 RAG Example: https://huggingface.co/learn/cookbook/rag_with_hugging_face_gemma_mongodb
 
 
 
