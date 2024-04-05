@@ -34,11 +34,6 @@ for s,v in zip(['AZ','FL','GA','IA','ME','MI','NC','NV','OH','PA','TX','WI'],
     )
 
 #print(radio_list)
-
-
-
-
-
 app.layout = html.Div([
     dbc.Row([
         dbc.Col(html.H1("USA Elections 2020", style={'textAlign':'center'}), width=12)
@@ -67,12 +62,17 @@ for x in ['AZ','FL','GA','IA','ME','MI','NC','NV','OH','PA','TX','WI']:
     input_list
 )
 def update_graph(az, fl, ga, ia, me, mi, nc, nv, oh, pa, tx, wi):
+    
     dff = df.copy()  # assign party to dataframe (long_code.py lines 55-57)
     for st,radio_value_chosen in zip(
             ['AZ','FL','GA','IA','ME','MI','NC','NV','OH','PA','TX','WI'],
             [az, fl, ga, ia, me, mi, nc, nv, oh, pa, tx, wi]):
+        #print(radio_value_chosen)
         dff.loc[dff.state == st, 'party'] = radio_value_chosen
+        #print("i")
 
+    #print("begin")
+    print(dff.head())
     # build map figure
     fig_map = px.choropleth(
         dff, locations="state", hover_name='electoral votes',
@@ -91,6 +91,7 @@ def update_graph(az, fl, ga, ia, me, mi, nc, nv, oh, pa, tx, wi):
     fig_bar.update_layout(showlegend=False, shapes=[
         dict(type='line', yref='paper',y0=0.77,y1=0.77, xref='x',x0=-0.5,x1=1.5)
     ])
+
     # add annotation text above line
     fig_bar.add_annotation(x=0.5, y=280, showarrow=False, text="270 votes to win")
 
@@ -98,4 +99,4 @@ def update_graph(az, fl, ga, ia, me, mi, nc, nv, oh, pa, tx, wi):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=True)
