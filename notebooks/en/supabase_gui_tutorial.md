@@ -43,8 +43,9 @@ def add_record():
     if name and age:
         try:
             # Insert record into Supabase database
-            response = supabase.table("your_table_name").insert({"name": name, "age": age}).execute()
-            if response.status_code == 201:
+            response = supabase.table("users").insert({"name": name, "age": age},count="exact").execute()
+            print(response)
+            if response.count > 0:
                 sg.popup("Success", "Record added successfully!")
             else:
                 sg.popup("Error", "Failed to add record.")
@@ -61,7 +62,7 @@ layout = [
     [sg.Button("Fetch Records", key='-FETCH-')],
     [sg.Text("Records:")],
     [sg.Multiline(size=(40, 10), key='-OUTPUT-')],
-    [sg.Text("Record ID"), sg.InputText(key='-RECORD_ID-')],
+   # [sg.Text("Record ID"), sg.InputText(key='-RECORD_ID-')],
     [sg.Button("Delete Record", key='-DELETE-')]
 ]
 
@@ -78,29 +79,32 @@ while True:
     elif event == '-FETCH-':
         try:
             # Fetch records from Supabase
-            response = supabase.table("your_table_name").select("*").execute()
+            response = supabase.table("users").select("*").execute()
             records = response.data
+            print(records)
             if records:
-                display_text = "\n".join([f"{record['id']}: {record['name']} - {record['age']}" for record in records])
+                display_text = "\n".join([f" {record['name']} - {record['age']}" for record in records])
                 window['-OUTPUT-'].update(display_text)
             else:
                 window['-OUTPUT-'].update("No records found.")
         except Exception as e:
             sg.popup("Exception", str(e))
     elif event == '-DELETE-':
-        record_id = values['-RECORD_ID-']
-        if record_id:
+        #record_id = values['-RECORD_ID-']
+        name = values['-NAME-']
+        if name:
             try:
                 # Delete record from Supabase
-                response = supabase.table("your_table_name").delete().eq("id", record_id).execute()
-                if response.status_code == 200:
+                response = supabase.table("users").delete(count="exact").eq("name", name).execute()
+                print(response)
+                if response.count > 0:
                     sg.popup("Success", "Record deleted successfully!")
                 else:
                     sg.popup("Error", "Failed to delete record.")
             except Exception as e:
                 sg.popup("Exception", str(e))
         else:
-            sg.popup("Input Error", "Please provide a record ID.")
+            sg.popup("Input Error", "Please provide a name.")
 
 # Close the window
 window.close()
