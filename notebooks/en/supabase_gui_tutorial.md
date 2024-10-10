@@ -123,3 +123,6 @@ window.close()
 - **Styling**: Improve the appearance of the PySimpleGUI GUI.
 
 This tutorial should give you a solid foundation for creating a Python desktop app that works with a Supabase database. Feel free to customize the app with more fields or different types of data interactions!
+
+![image](https://github.com/user-attachments/assets/cf062c6e-a266-4349-9f1e-1ce34aa6ed92)
+
