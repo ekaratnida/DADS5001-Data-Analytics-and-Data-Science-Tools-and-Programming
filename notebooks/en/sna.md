@@ -320,3 +320,44 @@ You can load these datasets in Python using pandas and perform analysis as demon
 
 This tutorial provides an introduction to Social Network Analysis using Python and NetworkX, with additional suggestions for tools suitable for non-technical learners. Feel free to adapt the examples to fit your audience's level of comfort with coding!
 
+Here is the list of definitions and examples for the terms you provided:
+
+1. Average Clustering Coefficient
+Definition: Measures the degree to which nodes in a network tend to cluster together. It indicates how interconnected a node’s neighbors are.
+Example: In a social network, if you and your friends are all friends with each other, the clustering coefficient is high.
+2. Average Path Length
+Definition: The average number of steps along the shortest paths for all possible pairs of nodes in the network. It indicates the efficiency of information or influence spread.
+Example: In a social network, it represents how many "hops" it takes, on average, for one person to reach another.
+3. Betweenness Centrality
+Definition: A measure of how often a node appears on the shortest paths between other nodes. It indicates the control or influence a node has over the flow of information.
+Example: A person in a company who acts as the main connector between different teams will have high betweenness centrality.
+4. Closeness Centrality
+Definition: Represents how close a node is to all other nodes in the network, measuring the average distance to all other nodes.
+Example: In a transportation network, a central train station that can reach all other stations with few stops has high closeness centrality.
+5. Connected Components
+Definition: Subsets of a graph in which any two nodes are connected to each other by paths, and which are connected to no additional nodes in the graph.
+Example: In a friendship network, a group of people all connected, while separate from other groups, forms a connected component.
+6. Degree
+Definition: The number of direct connections a node has.
+Example: In a social media network, the degree of a user node represents the number of friends or followers they have.
+7. Degree Power Law
+Definition: A relationship where the degree distribution of nodes in a network follows a power law, meaning a few nodes have very high connectivity while most have few connections.
+Example: In a citation network, a few papers are cited very frequently, while most are cited rarely.
+8. Diameter
+Definition: The longest shortest path between any two nodes in the network. It measures the maximum distance between any two nodes.
+Example: In a network of cities, the diameter would be the number of roads you need to travel through to reach the farthest city.
+9. Eigenvector Centrality
+Definition: Measures the influence of a node based on the influence of its neighbors. Nodes connected to other high-scoring nodes will score higher.
+Example: In a network of websites, a page that is linked to by many popular pages will have high eigenvector centrality.
+10. Graph Density
+Definition: The ratio of the number of edges in a graph to the number of possible edges. It measures how interconnected the network is.
+Example: A social group where everyone knows everyone else would have high graph density.
+11. HITS (Hyperlink-Induced Topic Search)
+Definition: An algorithm that assigns two scores to nodes: authority (high-quality information) and hub (links to authoritative sources). It’s often used for ranking web pages.
+Example: In a network of websites, a page that links to many authoritative news sites will have a high hub score.
+12. Modularity
+Definition: Measures the strength of division of a network into communities or modules. High modularity indicates a structure where nodes are tightly connected within communities but loosely connected between them.
+Example: A social network with distinct friend groups (e.g., work colleagues, family, classmates) will have high modularity.
+13. PageRank
+Definition: An algorithm originally used by Google Search to rank web pages based on their importance, considering the number and quality of links to them.
+Example: In a citation network, a paper that is cited by many highly cited papers will have a high PageRank score.
