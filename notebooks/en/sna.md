@@ -1,3 +1,5 @@
+# Lecture note: https://gephi.org/tutorials/gephi-tutorial-quick_start.pdf
+
 **Title: Introduction to Social Network Analysis Using Python and Datasets**
 
 **Objective:** Learn how to conduct Social Network Analysis (SNA) using Python and datasets. This tutorial will cover the basic concepts of SNA, introduce tools and libraries for non-technical learners, and guide you through practical coding exercises.
