@@ -66,17 +66,17 @@ You need to ingest data into Apache Pinot to query it. Here, we use a sample dat
             "name": "rating",
             "dataType": "FLOAT"
          }
-         ],
-   "dateTimeFieldSpecs": [
-      {
-         "name": "timestamp",
-         "dataType": "LONG",
-         "format": "EPOCH",
-         "granularity": "1:MINUTES"
-      }
-     ]
+      ],
+         "dateTimeFieldSpecs": [
+         {
+            "name": "timestamp",
+            "dataType": "LONG",
+            "format": "EPOCH",
+            "granularity": "1:MINUTES"
+         }
+      ]
    }
-```
+   ```
 You can use the Pinot UI or REST API to create this schema.
 
 2. **Create a Table**:
