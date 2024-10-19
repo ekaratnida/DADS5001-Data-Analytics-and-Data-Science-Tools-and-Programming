@@ -29,39 +29,55 @@ We will use the **Pinot REST API** to communicate between Python and Apache Pino
 
 ### **Prerequisites**
 
-1. **Python Installed**: Ensure Python 3.8+ is installed.
-2. **Apache Pinot Setup**: You need a running instance of Apache Pinot. You can use Docker to set it up quickly:
-   ```bash
-   docker run -p 9000:9000 -p 8099:8099 apachepinot/pinot:latest
-   ```
-3. **Install Required Libraries**:
-   ```bash
-   pip install requests pandas
-   ```
-
 ### **Step 1: Setting Up Apache Pinot**
+
+```bash
+   docker-compose up -d
+```
 
 First, make sure you have Apache Pinot running. You can either run it locally using Docker or set up a Pinot cluster. Once Pinot is running, you can access the web UI at `http://localhost:9000`.
 
 ### **Step 2: Ingest Sample Data into Apache Pinot**
+
+![image](https://github.com/user-attachments/assets/814a7df8-0ebf-4874-b6b6-2a6df8a24c59)
 
 You need to ingest data into Apache Pinot to query it. Here, we use a sample dataset containing movie ratings.
 
 1. **Create a Schema**:
    ```json
    {
-     "schemaName": "moviesSchema",
-     "dimensionFieldSpecs": [
-       {"name": "movieId", "dataType": "INT"},
-       {"name": "title", "dataType": "STRING"},
-       {"name": "genres", "dataType": "STRING"}
-     ],
-     "metricFieldSpecs": [
-       {"name": "rating", "dataType": "FLOAT"}
+      "schemaName": "moviesSchema",
+      "dimensionFieldSpecs": [
+         {
+            "name": "movieId",
+            "dataType": "INT"
+         },
+         {
+            "name": "title",
+            "dataType": "STRING"
+          },
+         {
+            "name": "genres",
+            "dataType": "STRING"
+          }
+        ],
+       "metricFieldSpecs": [
+         {
+            "name": "rating",
+            "dataType": "FLOAT"
+         }
+         ],
+   "dateTimeFieldSpecs": [
+      {
+         "name": "timestamp",
+         "dataType": "LONG",
+         "format": "EPOCH",
+         "granularity": "1:MINUTES"
+      }
      ]
    }
-   ```
-   You can use the Pinot UI or REST API to create this schema.
+```
+You can use the Pinot UI or REST API to create this schema.
 
 2. **Create a Table**:
    Define a real-time table that specifies Kafka as the ingestion source or an offline table for batch data.
