@@ -207,6 +207,10 @@ query = {
     "sql":"select * from movie_table limit 10"
 }
 
+#query = {
+#    "sql": "SELECT movieId, title, AVG(rating) as avgRating FROM moviesTable GROUP BY movieId, title LIMIT 10"
+#}
+
 # Send the query to Pinot
 response = requests.post(PINOT_BROKER_URL, json=query)
 
@@ -256,12 +260,3 @@ plt.show()
 1. **Setup Apache Pinot**: Set up a local Pinot instance and ingest data.
 2. **Integrate with Python**: Use the Pinot REST API to interact with Pinot from Python.
 3. **Query and Analyze Data**: Perform SQL queries and visualize the results using Python.
-
-### **Next Steps**
-
-- **Real-Time Data Streams**: Integrate Pinot with streaming data sources like Kafka to analyze data in real-time.
-- **Advanced Queries**: Learn more about the advanced querying capabilities of Pinot, such as text search and complex aggregations.
-- **Scaling Pinot**: Explore how to scale Apache Pinot for production workloads.
-
-This tutorial provides a solid foundation for working with Apache Pinot and Python for real-time data analytics. Feel free to experiment with different datasets and build custom visualizations!
-
