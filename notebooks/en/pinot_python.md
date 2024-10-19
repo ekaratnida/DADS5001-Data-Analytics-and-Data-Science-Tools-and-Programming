@@ -4,7 +4,7 @@
 
 ### **What is Apache Pinot?**
 
-**Apache Pinot** is a real-time distributed analytics data store that enables ultra-fast, scalable, and efficient OLAP (Online Analytical Processing) on large volumes of data. Originally developed at LinkedIn, it powers real-time analytics for various applications, such as monitoring, user-facing analytics, and dashboarding. Pinot is especially useful when data freshness and low-latency querying are crucial.
+**Apache Pinot** is a real-time distributed analytics data store that enables ultra-fast, scalable, and efficient OLAP (Online Analytical Processing) on large volumes of data. Originally developed at LinkedIn, it powers real-time analytics for various applications. Pinot is especially useful when data freshness and low-latency querying are crucial.
 
 **Key Features of Apache Pinot**:
 1. **Real-time Analytics**: It supports both real-time and batch data ingestion.
@@ -18,7 +18,7 @@ Apache Pinot's architecture consists of several key components:
 1. **Controller**: Coordinates the cluster and manages table configurations.
 2. **Broker**: Routes queries to the appropriate server to return results to the client.
 3. **Server**: Stores data segments and serves queries.
-4. **Minion**: Handles background tasks like data compaction.
+4. **Minion**: Handles background tasks like data compaction. (optional)
 5. **Real-time and Offline Ingestion**: Supports data ingestion from streaming sources (e.g., Apache Kafka) and batch sources (e.g., Hadoop, S3).
 
 ### **Python and Apache Pinot Integration**
