@@ -87,7 +87,7 @@ You can use the Pinot UI or REST API to create this schema.
 ```json
 {
   "REALTIME": {
-    "tableName": "movie_table_REALTIME",
+    "tableName": "moviesSchema",
     "tableType": "REALTIME",
     "segmentsConfig": {
       "schemaName": "moviesSchema",
@@ -113,7 +113,7 @@ You can use the Pinot UI or REST API to create this schema.
       "streamConfigs": {
         "streamType": "kafka",
         "stream.kafka.topic.name": "movies-topic",
-        "stream.kafka.broker.list": "localhost:9092",
+        "stream.kafka.broker.list": "kafka:9093",
         "stream.kafka.consumer.type": "lowlevel",
         "stream.kafka.consumer.prop.auto.offset.reset": "smallest",
         "stream.kafka.consumer.factory.class.name": "org.apache.pinot.plugin.stream.kafka20.KafkaConsumerFactory",
@@ -204,11 +204,11 @@ PINOT_BROKER_URL = "http://localhost:8099/query/sql"
 
 # Define a sample query to get movie ratings
 query = {
-    "sql":"select * from movie_table limit 10"
+    "sql":"select * from moviesSchema limit 10"
 }
 
 #query = {
-#    "sql": "SELECT movieId, title, AVG(rating) as avgRating FROM moviesTable GROUP BY movieId, title LIMIT 10"
+#    "sql": "SELECT movieId, title, AVG(rating) as avgRating FROM moviesSchema GROUP BY movieId, title LIMIT 10"
 #}
 
 # Send the query to Pinot
