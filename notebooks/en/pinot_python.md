@@ -1,6 +1,6 @@
 **Title: Integrating Apache Pinot with Python: A Comprehensive Tutorial**
 
-**Objective:** Learn how to use Apache Pinot for real-time data analytics with Python. This tutorial will cover the theory behind Apache Pinot and demonstrate how to integrate it with Python for performing data analytics.
+**Objective:** Learn how to use Apache Pinot for real-time data analytics with Python.
 
 ### **What is Apache Pinot?**
 
@@ -82,7 +82,7 @@ You need to ingest data into Apache Pinot to query it. Here, we use a sample dat
 You can use the Pinot UI or REST API to create this schema.
 
 2. **Create a Table**:
-   Define a real-time table that specifies Kafka as the ingestion source.
+   Define a real-time table that specifies Kafka as the ingestion source. (Video to config Pinot and Kafka: https://drive.google.com/file/d/119KfmpyWeD_1TqYoJpiXmXjRuEel82zZ/view)
 
 ```json
 {
