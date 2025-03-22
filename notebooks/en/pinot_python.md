@@ -43,7 +43,7 @@ First, make sure you have Apache Pinot running. You can either run it locally us
 
 You need to ingest data into Apache Pinot to query it. Here, we use a sample dataset containing movie ratings.
 
-![image](https://github.com/user-attachments/assets/6e1f92bd-0eaf-4999-a940-078169de3acc)
+![image](https://github.com/user-attachments/assets/1a8c77ac-26ac-45bc-af74-a97264414a54)
 
 1. **Create a Schema**:
    ```json
