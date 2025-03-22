@@ -191,7 +191,7 @@ You can use the Pinot UI or REST API to create this schema.
 ### **Step 3: Querying Pinot with Python**
 
 Now that you have data in Pinot, you can use Python to interact with it. 
-![image](https://github.com/user-attachments/assets/418156bf-3a28-4175-8dd4-bed8d819edb3)
+![image](https://github.com/user-attachments/assets/efc6a096-ce86-47c2-9dff-804fef830e3f)
 
 or use the Pinot REST API to send queries.
 
