@@ -73,7 +73,7 @@ You need to ingest data into Apache Pinot to query it. Here, we use a sample dat
          {
             "name": "timestamp",
             "dataType": "LONG",
-            "format": "EPOCH",
+            "format": "1:MINUTES:EPOCH",
             "granularity": "1:MINUTES"
          }
       ]
