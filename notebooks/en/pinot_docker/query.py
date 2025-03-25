@@ -9,7 +9,7 @@ PINOT_BROKER_URL = "http://localhost:8099/query/sql"
 #    "sql": "SELECT movieId, title, AVG(rating) as avgRating FROM moviesTable GROUP BY movieId, title LIMIT 10"
 #}
 query = {
-    "sql":"select * from movie_table limit 10"
+    "sql":"select * from moviesSchema limit 10"
 }
 
 # Send the query to Pinot
