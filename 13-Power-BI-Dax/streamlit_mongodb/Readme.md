@@ -1,9 +1,21 @@
-Example of mongodb shell
+## Example of mongodb shell
 1. mongosh
 2. https://www.geeksforgeeks.org/mongodb/mongodb-shell/
 
-Run the commands below inside mongosh for creating db and table.
-
+## Run the commands below inside mongosh for creating db and table.
 use mydb
 
 db.mycollection.insertMany([{"name" : "Mary", "pet": "dog"}, {"name" : "John", "pet": "cat"}, {"name" : "Robert", "pet": "bird"}])
+
+## Remove username and password below
+# .streamlit/secrets.toml
+
+[mongo] 
+
+host = "localhost"
+
+port = 27017
+
+username = ""
+
+password = ""
