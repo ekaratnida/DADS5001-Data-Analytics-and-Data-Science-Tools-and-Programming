@@ -1,0 +1,9 @@
+Setup streamlit
+1. Create a new folder "week11_streamlit_1"
+C:\Users\AS-LAB1\dads5001\week11_streamlit_1
+2. Create a python file, "uber_pickups.py" in the folder above.
+3. Create virtual environment, e.g., myenv, inside that folder. 
+(python -m venv myenv)
+4. run "myenv\Scripts\activate"
+5. pip install streamlit
+6. streamlit hello
