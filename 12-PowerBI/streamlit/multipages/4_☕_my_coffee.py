@@ -20,8 +20,7 @@ if st.toggle("Show dataset"):
 
 selectedCity = st.sidebar.selectbox('Choose your city',['Bangkok','Chiangmai','Phuket'])
 results = db.sql(f"SELECT \"Store Name\" FROM df1 where City='{selectedCity}'").df()
-st.table(results)
-
+#st.table(results)
 
 if st.toggle("Show details of each selected row."):
 
