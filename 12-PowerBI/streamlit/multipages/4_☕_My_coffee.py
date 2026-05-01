@@ -51,6 +51,15 @@ if st.toggle("Show details of each selected row."):
                 1. Create a plotly chart from the Starbucks data to show the position (lat,lon) of the selected store.
                 """
             )
+
+            #result3 = pd.DataFrame({
+            #    "lat" : result2["Latitude"],
+            #    "lon" : result2["Longitude"]   
+            #})
+ 
+            st.map(result2, latitude="Latitude", longitude="Longitude") #, size="col3", color="col4")
+            #st.write(result3)
+            #st.map(result3)
     else:
         st.info("Select a cell to see the details and update the chart.")
 
