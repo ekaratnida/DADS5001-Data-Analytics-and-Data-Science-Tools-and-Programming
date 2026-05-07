@@ -12,21 +12,31 @@ def init_connection():
     return MongoClient(uri)
 
 client = init_connection()
-st.write(client)
+#st.write(client)
 
 db = client['sample_airbnb']
 
 # Create or access a collection
 collection = db['listingsAndReviews']
 
+st.write("Number of data = " + str(collection.count_documents({})))
+#results = collection.find({'name':{'$regex':'^N'}},batch_size = 3)
+results = collection.find({}, limit = 3)
+
+#st.write(type(results))
+#st.write(len(results.to_list()))
+
+for res in results:
+    st.write(res)
+
 #result = collection.find_one({'name':'Big, Bright & Convenient Sheung Wan'})
 #st.write(result)
 #result = collection.find_one({'name': 'Alice'})
-for user in collection.find({
-    'description': {
-        '$regex': 'clean room', 
-        '$options': 'i'
-    }
-}):
-    st.write(user)
-    #st.write(user["name"]+" : "+str(user["age"]))
+#for user in collection.find({
+#    'description': {
+#        '$regex': 'clean room', 
+#        '$options': 'i'
+#    }
+#}):
+#    st.write(user)
+#st.write(user["name"]+" : "+str(user["age"]))
