@@ -46,6 +46,7 @@ with st.container(border=True):
     """)
 
 st.header("0. List Collections in 'sample_mflix'")
+
 try:
     db = get_db()
     collections = db.list_collection_names()
@@ -56,31 +57,48 @@ except PyMongoError as e:
     st.error(f"Error listing collections: {e}")
 
 st.header("1. A Sample Movie (A Star Is Born)")
-with st.container(border=True):
-    pipeline = [
-        {"$match": {"title": "A Star Is Born"}},
-        {"$limit": 1},
-    ]
 
-    #if st.button("Code1"):
-    #    st.toast(pipeline)
+with st.container(border=True):
+
+    # Non sensitive case
+    pipeline = [
+    {
+        '$match': {
+            "title": {
+                "$regex": "A star iS born",
+                "$options": "i"
+            }
+        }
+    }, 
+    {
+        '$limit': 10
+    }
+]
+
     st.info("Mongo cmd: " + str(pipeline))
 
     try:
+
         movies = get_movies_collection()
         results = list(movies.aggregate(pipeline))
+        
         if results:
             for movie in results:
                 st.json(movie, expanded=True)
         else:
             st.info("No document found")
+
     except PyMongoError as e:
         st.error(f"Error: {e}")
 
 st.header("2. A Sample Comment")
+
 with st.container(border=True):
-    pipeline = [{"$limit": 1}]
+
+    pipeline = [{"$limit": 3}]
+    
     st.info("Mongo cmd: " + str(pipeline))
+    
     try:
         db = get_db()
         results = list(db["comments"].aggregate(pipeline))
@@ -93,32 +111,39 @@ with st.container(border=True):
         st.error(f"Error: {e}")
 
 st.header("3. A Star Is Born - All Documents (Sorted by Year)")
+
 with st.container(border=True):
     pipeline = [
         {"$match": {"title": "A Star Is Born"}},
-        {"$sort": {"year": pymongo.ASCENDING}},
+        {"$sort": {"year": pymongo.DESCENDING}},
     ]
     st.info("Mongo cmd: " + str(pipeline))
     try:
+        
         movies = get_movies_collection()
         results = list(movies.aggregate(pipeline))
+
         if results:
             st.write(f"Found {len(results)} document(s)")
             for movie in results:
-                st.markdown(f"- **{movie['title']}**, {movie['cast'][0]}, {movie['year']}")
+                st.markdown(f"- **{movie['title']} ------ {movie['year']}")
         else:
             st.info("No documents found")
     except PyMongoError as e:
         st.error(f"Error: {e}")
 
 st.header("4. A Star Is Born - Most Recent")
+
 with st.container(border=True):
+
     pipeline = [
         {"$match": {"title": "A Star Is Born"}},
         {"$sort": {"year": pymongo.DESCENDING}},
         {"$limit": 1},
     ]
+
     st.info("Mongo cmd: " + str(pipeline))
+    
     try:
         movies = get_movies_collection()
         results = list(movies.aggregate(pipeline))
@@ -132,11 +157,17 @@ with st.container(border=True):
         st.error(f"Error: {e}")
 
 st.header("5. Movies With Comments (Top 5)")
+
 with st.container(border=True):
+    
     limit_option = st.radio("Select document limit:", ["1000 (faster)", "No limit (slower)"], horizontal=True)
+    
     if st.button("Run Aggregation", use_container_width=True):
+
         with st.spinner("Running aggregation..."):
-            stage_lookup_comments = {
+
+            stage1_lookup_comments = {
+
                 "$lookup": {
                     "from": "comments",
                     "localField": "_id",
@@ -144,28 +175,50 @@ with st.container(border=True):
                     "as": "related_comments"
                 }
             }
-            stage_add_comment_count = {
+
+            stage2_add_comment_count = {
+
                 "$addFields": {
                     "comment_count": {"$size": "$related_comments"}
                 }
+            
             }
-            stage_match_with_comments = {
-                "$match": {"comment_count": {"$gt": 2}}
-            }
-            limit_5 = {"$limit": 5}
 
-            pipeline = [stage_lookup_comments, stage_add_comment_count, stage_match_with_comments, limit_5]
+            stage3_match_with_comments = {
+                "$match": {
+                    "comment_count": {"$gt": 2} #, "$lt": 1000
+                    },
+            }
+
+            stage4_sort = {
+                "$sort": {
+                    "comment_count": pymongo.DESCENDING
+                    },
+            }
+            
+            stage5_limit = {
+                "$limit": 5
+            }
+
+            pipeline = [stage1_lookup_comments, stage2_add_comment_count, stage3_match_with_comments, stage4_sort, stage5_limit]
+            
             st.info("Mongo cmd: " + str(pipeline))
+            
             if limit_option == "1000 (faster)":
                 pipeline.insert(0, {"$limit": 1000})
 
             try:
+
                 movies = get_movies_collection()
                 results = list(movies.aggregate(pipeline))
+                
                 if results:
+
                     for movie in results:
                         with st.expander(f"{movie['title']} ({movie['comment_count']} comments)", expanded=False):
+                    
                             st.write(f"**Comment count:** {movie['comment_count']}")
+                    
                             for comment in movie["related_comments"][:5]:
                                 st.markdown(f"- **{comment['name']}:** {comment['text']}")
                 else:
@@ -175,9 +228,13 @@ with st.container(border=True):
 
 st.header("6. Movies Grouped By Year (Before 1920)")
 with st.container(border=True):
-    max_year = st.slider("Max year", min_value=1900, max_value=1920, value=1920)
+
+    max_year = st.slider("Max year", min_value = 1900, max_value = 1920, value = 1920)
+
     if st.button("Grouped By Year", use_container_width=True):
+        
         with st.spinner("Running aggregation..."):
+            
             stage_group_year = {
                 "$group": {
                     "_id": "$year",
@@ -185,6 +242,7 @@ with st.container(border=True):
                     "movie_titles": {"$push": "$title"},
                 }
             }
+
             stage_match_years = {
                 "$match": {
                     "_id": {"$type": "number", "$lt": max_year}
@@ -192,7 +250,7 @@ with st.container(border=True):
             }
             stage_sort_year_ascending = {"$sort": {"_id": pymongo.ASCENDING}}
 
-            pipeline = [stage_group_year, stage_match_years, stage_sort_year_ascending]
+            pipeline = [stage_group_year] #, stage_match_years, stage_sort_year_ascending]
 
             st.info("Mongo cmd: " + str(pipeline))
             try:
@@ -210,3 +268,21 @@ with st.container(border=True):
             except PyMongoError as e:
                 st.error(f"Error: {e}")
 
+st.header("7. Group and Count")
+
+movies = get_movies_collection()
+results = list(movies.aggregate([
+    {
+        '$group': {
+            '_id': '$year', 
+            'count': {
+                '$sum': 1
+            }
+        }
+    }, {
+        '$sort': {
+            'count': 1
+        }
+    }
+]))
+st.write(results)
