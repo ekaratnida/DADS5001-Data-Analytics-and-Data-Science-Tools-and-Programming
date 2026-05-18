@@ -95,16 +95,17 @@ with tab3:
     
     vision_prompt = st.text_input(
         "Vision Instructions", 
-        value="Provide a detailed caption describing this image, noting structural layout and key text elements if visible."
+        value="Describe this image, please be concise."
     )
     
     if uploaded_image is not None:
         image = Image.open(uploaded_image)
         # Resize image for optimal token handling if it's too massive
-        image.thumbnail((512, 512))        
+        image.thumbnail((512,512))        
         col1, col2 = st.columns([1, 1])
         
         with col1:
+            image = image.rotate(angle=90)
             st.image(image, caption="Uploaded View")
             
         with col2:
@@ -125,3 +126,4 @@ with tab3:
                     )
 
                     st.write(response.message.content)
+
